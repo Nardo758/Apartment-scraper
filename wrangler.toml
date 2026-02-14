@@ -1,0 +1,48 @@
+name = "apartment-scraper"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Browser Rendering binding
+[browser]
+binding = "MYBROWSER"
+
+# Durable Objects for job queue
+[[durable_objects.bindings]]
+name = "SCRAPER_JOBS"
+class_name = "ScraperJobQueue"
+script_name = "apartment-scraper"
+
+# Migrations for Durable Objects (free plan requires new_sqlite_classes)
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ScraperJobQueue"]
+
+# Environment variables (replace with your actual values)
+[vars]
+SUPABASE_URL = "https://jdymvpasjsdbryatscux.supabase.co"
+SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpkeW12cGFzanNkYnJ5YXRzY3V4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg1ODc1NTgsImV4cCI6MjA3NDE2MzU1OH0.Y88-nn2LDE6qZ4p69rFuOCjM6ES027WXs-T_4g7DTso"
+BRIGHTDATA_API_KEY = "62c3bfaa-b1b9-4341-a5bd-a863606754cb"
+SCRAPINGBEE_API_KEY = "FS7XD25BIU56TGMOWX8K6OFZX19LYXC2PLVLJ4GIAVTZNPZK3I9BW7NGKWNLATNSMERML9QYWIR1S4BX"
+
+# Secrets (set with: wrangler secret put SUPABASE_SERVICE_KEY)
+# SUPABASE_SERVICE_KEY = "your-service-role-key"
+
+# Enable observability for debugging
+[observability]
+enabled = true
+
+# Cron Triggers for Cost-Optimized Scraping (FREE!)
+# https://developers.cloudflare.com/workers/configuration/cron-triggers/
+[triggers]
+crons = [
+  # Option 1: Weekly full scrape (Sunday 2 AM EST = 7 AM UTC)
+  "0 7 * * 0",
+  
+  # Option 2: Daily partial scrape (Mon-Sat 2 AM EST = 7 AM UTC)
+  "0 7 * * 1-6",
+  
+  # Option 3: Gradual scraping (every 4 hours for free tier)
+  # Uncomment if you want to stay completely within free tier:
+  # "0 */4 * * *",
+]

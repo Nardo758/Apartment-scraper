@@ -1,0 +1,34 @@
+{
+  "name": "apartment-scraper-worker",
+  "version": "1.0.0",
+  "description": "Production-ready Cloudflare Worker for scraping Apartments.com listings at scale",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "./test.sh",
+    "tail": "wrangler tail",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "cloudflare-workers",
+    "web-scraping",
+    "puppeteer",
+    "apartments",
+    "rental-listings",
+    "supabase"
+  ],
+  "author": "Apartment Locator AI",
+  "license": "MIT",
+  "dependencies": {
+    "@cloudflare/puppeteer": "^1.0.6",
+    "@supabase/supabase-js": "^2.95.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260213.0",
+    "@types/node": "^25.2.3",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.65.0"
+  }
+}
