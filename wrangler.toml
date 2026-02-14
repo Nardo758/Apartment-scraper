@@ -36,13 +36,6 @@ enabled = true
 # https://developers.cloudflare.com/workers/configuration/cron-triggers/
 [triggers]
 crons = [
-  # Option 1: Weekly full scrape (Sunday 2 AM EST = 7 AM UTC)
-  "0 7 * * 0",
-  
-  # Option 2: Daily partial scrape (Mon-Sat 2 AM EST = 7 AM UTC)
-  "0 7 * * 1-6",
-  
-  # Option 3: Gradual scraping (every 4 hours for free tier)
-  # Uncomment if you want to stay completely within free tier:
-  # "0 */4 * * *",
+  # Daily scrape at 2 AM EST (7 AM UTC)
+  "0 7 * * *"
 ]
